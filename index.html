@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andressa Cesca - Vídeos</title>
+<style>
+  body { 
+    font-family: Arial, sans-serif; 
+    text-align: center; 
+    padding: 20px; 
+    background-color: #000; /* fundo preto */
+    color: #fff; /* texto branco */
+  }
+  h1 { margin-bottom: 40px; }
+  .thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 560px); /* 2 colunas de 560px */
+    gap: 10px; /* espaço entre thumbnails */
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .thumbnail-container h4 { margin: 5px 0; color: #fff; }
+  .thumbnail { cursor: pointer; width: 560px; border-radius: 8px; }
+  .video-section { display: none; padding: 20px; }
+  .active { display: block; }
+  .links { margin-top: 15px; }
+  .playlist-link { color: #00f; font-weight: bold; text-decoration: none; margin-right: 15px; }
+  .playlist-link:hover { color: #0af; }
+  .voltar-btn { background-color: #444; color: #fff; padding: 8px 16px; border-radius: 5px; font-weight: bold; text-decoration: none; }
+  .voltar-btn:hover { background-color: #666; }
+  iframe { border-radius: 8px; width: 560px; max-width: 100%; height: 315px; display: block; margin: 0 auto; }
+  @media(max-width: 1200px){
+    .thumbnail-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media(max-width: 600px){
+    .thumbnail-grid { grid-template-columns: 1fr; }
+    .thumbnail { width: 90%; }
+    iframe { width: 90%; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Andressa Cesca</h1>
+
+<!-- Tela inicial com thumbnails -->
+<div id="home" class="active">
+  <h2>Escolha um vídeo</h2>
+  <div class="thumbnail-grid">
+    <div class="thumbnail-container">
+      <h4>1º MÊS BARIÁTRICA SLEEVE</h4>
+      <img src="https://img.youtube.com/vi/fJxsYHvEvfs/hqdefault.jpg" class="thumbnail" onclick="showVideo('video1')">
+    </div>
+    <div class="thumbnail-container">
+      <h4>2º MÊS BARIÁTRICA SLEEVE</h4>
+      <img src="https://img.youtube.com/vi/mP7zls0wFX0/hqdefault.jpg" class="thumbnail" onclick="showVideo('video2')">
+    </div>
+    <div class="thumbnail-container">
+      <h4>3º MÊS BARIÁTRICA SLEEVE</h4>
+      <img src="https://img.youtube.com/vi/o6lPEr2QqKU/hqdefault.jpg" class="thumbnail" onclick="showVideo('video3')">
+    </div>
+    <div class="thumbnail-container">
+      <h4>4º MÊS BARIÁTRICA SLEEVE</h4>
+      <img src="https://img.youtube.com/vi/aQF3OWuPA9c/hqdefault.jpg" class="thumbnail" onclick="showVideo('video4')">
+    </div>
+  </div>
+</div>
+
+<!-- Seções de cada vídeo -->
+<div id="video1" class="video-section">
+  <h2>1º MÊS BARIÁTRICA SLEEVE</h2>
+  <iframe id="iframe1" src="https://www.youtube.com/embed/fJxsYHvEvfs" frameborder="0" allowfullscreen></iframe>
+  <div class="links">
+    <a href="https://www.youtube.com/@andressacesca/playlists" target="_blank" class="playlist-link">Veja a playlist completa</a>
+    <a href="#" class="voltar-btn" onclick="backHome()">Voltar</a>
+  </div>
+</div>
+
+<div id="video2" class="video-section">
+  <h2>2º MÊS BARIÁTRICA SLEEVE</h2>
+  <iframe id="iframe2" src="https://www.youtube.com/embed/mP7zls0wFX0" frameborder="0" allowfullscreen></iframe>
+  <div class="links">
+    <a href="https://www.youtube.com/@andressacesca/playlists" target="_blank" class="playlist-link">Veja a playlist completa</a>
+    <a href="#" class="voltar-btn" onclick="backHome()">Voltar</a>
+  </div>
+</div>
+
+<div id="video3" class="video-section">
+  <h2>3º MÊS BARIÁTRICA SLEEVE</h2>
+  <iframe id="iframe3" src="https://www.youtube.com/embed/o6lPEr2QqKU" frameborder="0" allowfullscreen></iframe>
+  <div class="links">
+    <a href="https://www.youtube.com/@andressacesca/playlists" target="_blank" class="playlist-link">Veja a playlist completa</a>
+    <a href="#" class="voltar-btn" onclick="backHome()">Voltar</a>
+  </div>
+</div>
+
+<div id="video4" class="video-section">
+  <h2>4º MÊS BARIÁTRICA SLEEVE</h2>
+  <iframe id="iframe4" src="https://www.youtube.com/embed/aQF3OWuPA9c" frameborder="0" allowfullscreen></iframe>
+  <div class="links">
+    <a href="https://www.youtube.com/@andressacesca/playlists" target="_blank" class="playlist-link">Veja a playlist completa</a>
+    <a href="#" class="voltar-btn" onclick="backHome()">Voltar</a>
+  </div>
+</div>
+
+<script>
+  const videoSrc = {
+    video1: "https://www.youtube.com/embed/fJxsYHvEvfs",
+    video2: "https://www.youtube.com/embed/mP7zls0wFX0",
+    video3: "https://www.youtube.com/embed/o6lPEr2QqKU",
+    video4: "https://www.youtube.com/embed/aQF3OWuPA9c"
+  };
+
+  function showVideo(id){
+    document.getElementById('home').classList.remove('active');
+    let sections = document.getElementsByClassName('video-section');
+    for(let s of sections){ s.classList.remove('active'); }
+    const videoDiv = document.getElementById(id);
+    videoDiv.classList.add('active');
+    // rola a página até o vídeo
+    videoDiv.scrollIntoView({behavior: 'smooth'});
+  }
+
+  function backHome(){
+    // Parar vídeos ao voltar
+    for(let key in videoSrc){
+      document.getElementById('iframe'+key.slice(-1)).src = videoSrc[key];
+    }
+    let sections = document.getElementsByClassName('video-section');
+    for(let s of sections){ s.classList.remove('active'); }
+    document.getElementById('home').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // rola para o topo
+  }
+</script>
+
+</body>
+</html>
+
+
+
